@@ -57,6 +57,11 @@ header ul:after {
     padding-bottom: 185px;
 }
 
+.function-container-fluid {
+    background-color: white;
+    padding: 80px;
+    padding-bottom: 185px;
+} /* .function-container-fluidの設定を追加してみた */
 
 footer {
   width: 100%;
@@ -65,9 +70,11 @@ footer {
   color: white;
   margin: auto;
   font-size: 12px;
+  bottom: 0px; /* bottom 0px を入れ、position: absolute;を入れてもフッタが下に表示されるようにした */
   position: absolute; 
-  bottom: 0;
+
 }
+
 
 html {
     position: relative;
