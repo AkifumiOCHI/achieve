@@ -10,11 +10,11 @@
     </div>
   <% end %>
 
-  <%= f.label :タイトル %>
-  <%= f.text_field :title, class: 'form-control' %>
+  <!--<%= f.label :タイトル %>-->
+  <%= f.text_field :title, class: 'form-control', placeholder: "タイトル" %>
   <br>
-  <%= f.label :内容 %>
-  <%= f.text_field :content, class: 'form-control' %>
+  <!--<%= f.label :内容 %>-->
+  <%= f.text_field :content, class: 'form-control', placeholder: "内容" %>
   <br>
   <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
 <% end %>
