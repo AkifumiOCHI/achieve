@@ -11,6 +11,7 @@ class ContactsController < ApplicationController
 
   def create
       @contact = Contact.create(contacts_params)
+      @contact.email = current_user.email
       if @contact.save
          redirect_to root_path, notice: "お問い合わせいただきありがとうございました！"
          NoticeMailer.sendmail_contact(@contact).deliver
