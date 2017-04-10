@@ -4,7 +4,9 @@
 <h2>パスワードを変更する</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+　　<!--<%= devise_error_messages! %>   DIVE13にてエラーメッセージを定義したので、書き換える  -->
+　　<%= f.error_messages! %>
+
   <%= f.hidden_field :reset_password_token %>
 
   <div class="field">
