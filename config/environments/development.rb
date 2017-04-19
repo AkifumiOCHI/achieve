@@ -10,7 +10,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = false # DIVE13でtrueから変更した（better_errorsの確認の際にはtrueにする）
+  config.consider_all_requests_local       = true # DIVE13でtrueから変更した（better_errorsの確認の際にはtrueにする）
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.

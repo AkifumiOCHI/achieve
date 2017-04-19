@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
   mount_uploader :avatar, AvatarUploader #deviseの設定配下に追記(14-2 SNSログイン)
-  has_many :blogs
+  has_many :blogs, dependent: :destroy
+  has_many :comments, dependent: :destroy #commentモデルのアソシエーションを設定
 
  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
   user = User.find_by(email: auth.info.email)
