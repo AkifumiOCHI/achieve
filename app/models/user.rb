@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader #deviseの設定配下に追記(14-2 SNSログイン)
   has_many :blogs, dependent: :destroy
   has_many :comments, dependent: :destroy #commentモデルのアソシエーションを設定
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy #ユーザが多数のrelationshipsを持ち、外部キーがfollower_id,ユーザ削除で一緒に消える
+  has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
+  # reverse_relationshipsというアソシエーションを定義し、class_nameをつけることでそれに対してアソシエーションを定義する
+  has_many :followed_users, through: :relationships, source: :followed #relationshipモデルで定義したfollowedを介して複数のfollowed_usersを所持する
+  has_many :followers, through: :reverse_relationships, source: :follower #relationshipモデルで定義したfollowerを介して複数のfollowersを所持する
+  # Userモデルと、（仮想的な自分自身である）Userモデルとのアソシエーション
 
  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
   user = User.find_by(email: auth.info.email)
@@ -34,7 +40,7 @@ class User < ActiveRecord::Base
     end
   end
 
- def self.find_for_twitter_oauth(auth, signed_in_resource = nil)
+  def self.find_for_twitter_oauth(auth, signed_in_resource = nil)
     user = User.find_by(provider: auth.provider, uid: auth.uid)
 
     unless user
@@ -54,5 +60,20 @@ class User < ActiveRecord::Base
 
   def self.create_unique_string
     SecureRandom.uuid
+  end
+
+  #指定のユーザをフォローする
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  #フォローしているかどうかを確認する
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
+
+  #指定のユーザをアンフォローする
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
   end
 end

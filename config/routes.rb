@@ -24,6 +24,10 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
+  resources :users, only: [:index, :show] #devise_forよりも後ろに記載する必要がある
+
+  resources :relationships, only: [:create, :destroy] #フォロー関係の作成および削除
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
