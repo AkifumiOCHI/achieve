@@ -18,7 +18,10 @@ table.show {
 
 td {
   text-align: left;
-  border: 1px dotted #999999;
+  border-top: 1px dotted #999999;
+  border-bottom: 1px dotted #999999;
+  border-left: none;
+  border-right: none;
   padding: 10px;
   border-collapse: collapse;
 }
