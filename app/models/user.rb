@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :relationships, source: :followed #relationshipモデルで定義したfollowedを介して複数のfollowed_usersを所持する
   has_many :followers, through: :reverse_relationships, source: :follower #relationshipモデルで定義したfollowerを介して複数のfollowersを所持する
   # Userモデルと、（仮想的な自分自身である）Userモデルとのアソシエーション
+  has_many :tasks, dependent: :destroy #DIVE17で追記。
 
  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
   user = User.find_by(email: auth.info.email)
@@ -76,4 +77,5 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
   end
+
 end
