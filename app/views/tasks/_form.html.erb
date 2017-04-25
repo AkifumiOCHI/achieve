@@ -24,7 +24,11 @@
   </div>
   <div class="field">
     <%= f.label :期限 %><br>
-    <%= f.text_field :deadline, class: 'form-control' %>
+    <%= f.datetime_select :deadline, class: 'form-control' %>
+  </div>
+  <div class="field">
+     <%= f.label :担当者 %><br>
+     <%= f.collection_select :charge_id, User.all, :id, :name %> <!--collection_selectでUserテーブルから全選択できるようにする-->
   </div>
   <div class="field">
     <%= f.label :進捗状況 %><br>
