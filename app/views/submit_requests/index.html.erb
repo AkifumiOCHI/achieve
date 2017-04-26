@@ -1,3 +1,6 @@
+<div class="container">
+  <div class="wrapper col-md-12 col-sm-12">
+
 <p id="notice"><%= notice %></p>
 
 <h1>依頼したタスクの一覧</h1>
@@ -5,7 +8,7 @@
 <br>
 <br>
 
-<table>
+<table class="index">
   <thead>
     <tr>
       <th>依頼者（自分）</th>
@@ -27,9 +30,9 @@
         <td><%= submit_request.message %></td>
         <td><%= submit_request.request_user.name %></td><!--idを削除し.nameを追加-->
         <td><%= submit_request.status %></td>
-        <td><%= link_to '依頼したタスクの詳細', submit_request, class: "btn btn-info btn-sm" %></td>
-        <td><%= link_to '依頼したタスクの編集', edit_submit_request_path(submit_request), class: "btn btn-warning btn-sm" %></td>
-        <td><%= link_to '依頼したタスクの削除', submit_request, method: :delete, data: { confirm: '本当に削除してもよろしいですか？' }, class: "btn btn-danger btn-sm" %></td>
+        <td><%= link_to 'タスクの詳細', submit_request, class: "btn btn-info btn-sm" %></td>
+        <td><%= link_to 'タスクの編集', edit_submit_request_path(submit_request), class: "btn btn-warning btn-sm" %></td>
+        <td><%= link_to 'タスクの削除', submit_request, method: :delete, data: { confirm: '本当に削除してもよろしいですか？' }, class: "btn btn-danger btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -37,4 +40,10 @@
 
 <br>
 
+<%= link_to '依頼されたタスク一覧に移動', inbox_submit_requests_path, class: "btn btn-default btn-sm" %>
+<br>
+<br>
 <%= link_to '新しいタスクの依頼', new_submit_request_path, class: "btn btn-default btn-sm" %>
+
+</div>
+</div>

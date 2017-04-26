@@ -32,7 +32,8 @@
                         <li><%= link_to 'ブログ', blogs_path %></li>
                         <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
                         <li><%= link_to 'タスク作成', tasks_path if user_signed_in? %></li>
-                        <!--<li><%= link_to '依頼されたタスク一覧', inbox_submit_requests_path if user_signed_in? %></li>-->
+                        <li><%= link_to '依頼を受けたタスク一覧', inbox_submit_requests_path if user_signed_in? %></li>
+                        <li><%= link_to '依頼したタスク一覧', submit_requests_path if user_signed_in? %></li>
                     </ul>
                 </li>
                 <% if user_signed_in? %>

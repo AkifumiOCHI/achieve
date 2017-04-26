@@ -1,3 +1,6 @@
+<div class="container">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+
 <%= form_for(@submit_request) do |f| %>
   <% if @submit_request.errors.any? %>
     <div id="error_explanation">
@@ -14,7 +17,7 @@
   <%= f.hidden_field :user_id %>
 
   <div class="field">
-    <%= f.label :task_id %><br>
+    <%= f.label :タスク %><br>
     <%= f.collection_select :task_id, Task.where(charge_id: current_user.id), :id, :title %> <!--collection_selectを用いてタスクを選択できるようにする+whereで自分の作成したタスクのみ選べるようにする-->
   </div>
   <div class="field">
@@ -27,9 +30,13 @@
   </div>
   <div class="field">
     <%= f.label :依頼状況 %><br>
-    <%= f.number_field :status, class: 'form-control' %>
+    <%= f.select :status, SubmitRequest.statuses.keys %>
   </div>
   <div class="actions">
     <%= f.submit '送信', class: "btn btn-primary btn-block" %>
   </div>
 <% end %>
+<%= link_to '依頼したタスクフローの一覧', submit_requests_path, class: "btn btn-default btn-sm" %>
+<%= link_to '依頼されたタスクフローの一覧', inbox_submit_requests_path, class: "btn btn-default btn-sm" %>
+</div>
+</div>

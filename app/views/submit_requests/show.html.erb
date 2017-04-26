@@ -9,24 +9,18 @@
   <td><strong>依頼元ユーザ（タスク依頼者）</strong></td>
   <td><%= @submit_request.user.name %></td><!--.nameを追加-->
 </tr>
-
-
-
 <tr>
   <td><strong>タスク名（標題）</strong></td>
   <td><%= @submit_request.task.title %></td><!--.titleを追加-->
 </tr>
-
 <tr>
   <td><strong>メッセージ</strong></td>
   <td><%= @submit_request.message %></td>
 </tr>
-
 <tr>
   <td><strong>依頼先ユーザ（タスク担当者）</strong></td>
   <td><%= @submit_request.request_user.name %></td><!--.idを削除して.nameを追加-->
 </tr>
-
 <tr>
   <td><strong>依頼状況</strong></td>
   <td><%= @submit_request.status %></td>
@@ -34,6 +28,8 @@
 </table>
 
 <%= link_to 'タスクの編集', edit_submit_request_path(@submit_request), class: "btn btn-warning btn-sm" %>
+<br>
+<br>
 <%= link_to '依頼したタスク一覧に戻る', submit_requests_path, class: "btn btn-default btn-sm" %>
 <%= link_to '依頼されたタスク一覧に戻る', inbox_submit_requests_path, class: "btn btn-default btn-sm" %>
 

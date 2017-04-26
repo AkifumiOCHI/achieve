@@ -1,3 +1,50 @@
 // Place all the styles related to the SubmitRequests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.index    {
+  width: 100%;
+  border: solid 2px;
+}
+
+table.index th   {
+  text-align: center;
+  border-bottom: 2px double;
+  width: 50%;
+}
+
+table.index td   {
+  border-top: dotted 1px;
+  border-bottom: dotted 1px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table.inbox    {
+  width: 100%;
+  border: solid 2px;
+}
+
+table.inbox th   {
+  text-align: center;
+  border-bottom: 2px double;
+  width: 50%;
+}
+
+table.inbox td   {
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table.show {
+  border: 2px solid #333333;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+table.show td {
+ width: 33%;
+}
