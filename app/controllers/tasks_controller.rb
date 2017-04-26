@@ -5,7 +5,8 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(charge_id: current_user.id)
+    @tasks = Task.all
+    # @tasks = Task.where(charge_id: current_user.id) #where句をview側で指定して調整した
   end
 
   # GET /tasks/1
@@ -26,8 +27,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = current_user.tasks.build(task_params)
-    @task.charge_id = current_user.id
-
+    # @task.charge_id = current_user.id
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'タスクが作成されました！' }

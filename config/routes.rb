@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :submit_requests do
+    get 'inbox', on: :collection
+    member do #memberオプションで/submit_requests/:id/approveみたいなルーティングを作れる。
+      patch 'approve'
+      patch 'reject'
+    end
+  end
   resources :tasks
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
@@ -28,6 +35,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] #devise_forよりも後ろに記載する必要がある
 
   resources :relationships, only: [:create, :destroy] #フォロー関係の作成および削除
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

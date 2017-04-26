@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower #relationshipモデルで定義したfollowerを介して複数のfollowersを所持する
   # Userモデルと、（仮想的な自分自身である）Userモデルとのアソシエーション
   has_many :tasks, dependent: :destroy #DIVE17で追記。
+  has_many :submit_requests, dependent: :destroy #DIVE18で追記。
+  has_many :received_requests, class_name: 'SubmitRequest', foreign_key: 'request_user_id' #DIVE18で追記。
 
  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
   user = User.find_by(email: auth.info.email)

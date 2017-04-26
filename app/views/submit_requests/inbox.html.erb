@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>依頼を受けたタスクの一覧</h1>
+<%= link_to '新しいタスクの依頼', new_submit_request_path, class: "btn btn-default btn-sm" %>
+<br>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>依頼者</th>
+      <th>タスク</th>
+      <th>メッセージ</th>
+      <th>依頼を受けた<br>タスクの担当者（自分）</th>
+      <th>依頼状況</th>
+      <th>詳細</th>
+      <th>承認</th>
+      <th>却下</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @submit_requests.each do |submit_request| %>
+      <tr>
+        <td><%= submit_request.user.name %></td><!--.nameの追加-->
+        <td><%= submit_request.task.title %></td><!--.titleの追加-->
+        <td><%= submit_request.message %></td>
+        <td><%= submit_request.request_user.name %></td><!--.idを削除して.nameの追加-->
+        <td><%= submit_request.status %></td>
+        <td><%= link_to '依頼されたタスクの詳細', submit_request, class: "btn btn-info btn-sm" %></td>
+        <td><%= link_to '依頼されたタスクの承認', approve_submit_request_path(submit_request, submit_request: {status: 2}), method: :patch, data: {confirm: '承認しますか？'}, class: "btn btn-warning btn-sm" %></td>
+        <td><%= link_to '依頼されたタスクの却下', reject_submit_request_path(submit_request, submit_request: {status: 9}), method: :patch, data: { confirm: '却下しますか?' }, class: "btn btn-danger btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新しいタスクの依頼', new_submit_request_path, class: "btn btn-default btn-sm" %>
