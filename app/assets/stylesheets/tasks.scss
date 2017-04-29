@@ -2,21 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table.index {
+table.taskindex {
   border: 1px solid #666666;
   margin: 0 auto;
   margin-bottom: 10px;
   border-collapse: collapse;
 }
 
-table.show {
+table.taskshow {
   border: 2px solid #333333;
   margin: 0 auto;
   margin-bottom: 20px;
   border-collapse: collapse;
 }
 
-td {
+td.tasktd {
   text-align: left;
   border-top: 1px dotted #999999;
   border-bottom: 1px dotted #999999;

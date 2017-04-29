@@ -10,30 +10,30 @@
   <div class="col-md-6 col-sm-12">
 <h3>自分が担当するタスク</h3>
 <% @tasks.where(charge_id: current_user.id).each do |task| %> <!--viewでもwhere句で条件指定できる-->
-<table class="index">
+<table class="taskindex">
     <tr>
-      <td><strong>○　標題</strong></td>
-      <td><h4><strong><%= link_to task_path(task) do %><%= task.title %><% end %></strong></h4></td>
+      <td class="tasktd"><strong>○　標題</strong></td>
+      <td class="tasktd"><h4><strong><%= link_to task_path(task) do %><%= task.title %><% end %></strong></h4></td>
     </tr>
     <tr>
-      <td>○　依頼者</td>
-      <td><%= task.user.name %></td>
+      <td class="tasktd">○　依頼者</td>
+      <td class="tasktd"><%= task.user.name %></td>
     </tr>
     <tr>
-      <td>○　内容</td>
-      <td><%= task.content %></td>
+      <td class="tasktd">○　内容</td>
+      <td class="tasktd"><%= task.content %></td>
     </tr>
     <tr>
-      <td>○　期限</td>
-      <td><%= task.deadline.strftime("%Y年%m月%d日 %H時%M分") %></td>
+      <td class="tasktd">○　期限</td>
+      <td class="tasktd"><%= task.deadline.strftime("%Y年%m月%d日 %H時%M分") %></td>
     </tr>
     <tr>
-      <td><strong>○　担当者</strong></td>
-      <td><strong><%= task.charge.name %></strong></td>
+      <td class="tasktd"><strong>○　担当者</strong></td>
+      <td class="tasktd"><strong><%= task.charge.name %></strong></td>
     </tr>
     <tr>
-      <td>○　進捗状況</td>
-      <td><%= task.status %></td>
+      <td class="tasktd">○　進捗状況</td>
+      <td class="tasktd"><%= task.status %></td>
     </tr>
  </table>
 
@@ -51,30 +51,30 @@
 <div class="col-md-6 col-sm-12">
 <h3>自分が作成したタスク</h3>
 <% @tasks.where(user_id: current_user.id).each do |task| %>
-<table class="index">
+<table class="taskindex">
     <tr>
-      <td><strong>○　標題</strong></td>
-      <td><h4><strong><%= link_to task_path(task) do %><%= task.title %><% end %></strong></h4></td>
+      <td class="tasktd"><strong>○　標題</strong></td>
+      <td class="tasktd"><h4><strong><%= link_to task_path(task) do %><%= task.title %><% end %></strong></h4></td>
     </tr>
     <tr>
-      <td><strong>○　依頼者</strong></td>
-      <td><strong><%= task.user.name %></strong></td>
+      <td class="tasktd"><strong>○　依頼者</strong></td>
+      <td class="tasktd"><strong><%= task.user.name %></strong></td>
     </tr>
     <tr>
-      <td>○　内容</td>
-      <td><%= task.content %></td>
+      <td class="tasktd">○　内容</td>
+      <td class="tasktd"><%= task.content %></td>
     </tr>
     <tr>
-      <td>○　期限</td>
-      <td><%= task.deadline.strftime("%Y年%m月%d日 %H時%M分") %></td>
+      <td class="tasktd">○　期限</td>
+      <td class="tasktd"><%= task.deadline.strftime("%Y年%m月%d日 %H時%M分") %></td>
     </tr>
     <tr>
-      <td>○　担当者</td>
-      <td><%= task.charge.name %></td>
+      <td class="tasktd">○　担当者</td>
+      <td class="tasktd"><%= task.charge.name %></td>
     </tr>
     <tr>
-      <td>○　進捗状況</td>
-      <td><%= task.status %></td>
+      <td class="tasktd">○　進捗状況</td>
+      <td class="tasktd"><%= task.status %></td>
     </tr>
  </table>
 
