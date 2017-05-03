@@ -36,6 +36,10 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy] #フォロー関係の作成および削除
 
+  resources :conversations do
+    resources :messages
+  end
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
