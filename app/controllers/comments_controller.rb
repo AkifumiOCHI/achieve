@@ -10,7 +10,7 @@ class CommentsController < ApplicationController #コメントを投稿・保存
         format.html {redirect_to blog_path(@blog), notice: 'コメントを投稿しました！'}
         format.js {render :index} #js形式でレスポンスを返す。（Ajaxではjson形式で返すことになっている）
         Pusher.trigger('test_channel', 'comment_created', {
-          message: 'あなたの作成したブログにコメントが付きました'
+          message: 'あなたの作成したブログにコメントがつきました！'
         })
       else
         format.html {render :new}
