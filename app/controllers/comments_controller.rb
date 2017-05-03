@@ -9,6 +9,9 @@ class CommentsController < ApplicationController #コメントを投稿・保存
         flash.now[:notice] = 'コメントを投稿しました！' #試してみたところ、アクションの下にflash.nowを入れ、js側にもflash関連の行を追加することが必要だった
         format.html {redirect_to blog_path(@blog), notice: 'コメントを投稿しました！'}
         format.js {render :index} #js形式でレスポンスを返す。（Ajaxではjson形式で返すことになっている）
+        Pusher.trigger('test_channel', 'comment_created', {
+          message: 'あなたの作成したブログにコメントが付きました'
+        })
       else
         format.html {render :new}
       end
