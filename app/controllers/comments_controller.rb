@@ -11,12 +11,12 @@ class CommentsController < ApplicationController #コメントを投稿・保存
         format.html {redirect_to blog_path(@blog), notice: 'コメントを投稿しました！'}
         format.js {render :index} #js形式でレスポンスを返す。（Ajaxではjson形式で返すことになっている）
         unless @comment.blog.user_id == current_user.id
-          Pusher.trigger("user_#{@comment.blog.user_id}_channel", 'comment_created', {
-            message: '作成したブログにコメントがつきました！'
-          })
+        Pusher.trigger("user_#{@comment.blog.user_id}_channel", 'comment_created', {
+        message: '作成したブログにコメントがつきました！'
+        })
         end
         Pusher.trigger("user_#{@comment.blog.user_id}_channel", 'notification_created', {
-          unread_counts: Notification.where(user_id: @comment.blog.user.id, read: false).count
+        unread_counts: Notification.where(user_id: @comment.blog.user.id, read: false).count
         })
       else
         format.html {render :new}

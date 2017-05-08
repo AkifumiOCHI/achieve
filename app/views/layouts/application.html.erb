@@ -10,6 +10,7 @@
   <% if user_signed_in? %>
     <script>
       var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',{
+        cluster: "ap1",
         encrypted: true
       });
 
@@ -20,6 +21,7 @@
       channel.bind('notification_created', function(data) {
         $('#unread_count').html(data.unread_counts);
       });
+
     </script>
   <% end %>
 </head>
