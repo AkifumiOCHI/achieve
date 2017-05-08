@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+    <h2>通知</h2>
+      <table class="note_table">
+        <tr>
+          <th>通知の確認</th>
+          <th>コメント者</th>
+          <th>ブログ名</th>
+          <th>コメント時間</th>
+        </tr>
+        <tr>
+        <% @notifications.each do |notification| %>
+          <td><%= read_status(notification.read) %></td>
+          <td><%= notification.comment.user.try(:name) %>さん</td>
+          <td><%= link_to "#{notification.comment.blog.title}", blog_path(notification.comment.blog, notification_id: notification.id) %></td>
+          <td><%= notification.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
+        </tr>
+        <% end %>
+      </table>
+</div>
+</div>

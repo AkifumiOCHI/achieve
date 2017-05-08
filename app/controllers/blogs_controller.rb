@@ -13,6 +13,7 @@ class BlogsController < ApplicationController
   def show #入力フォームと一覧を表示させるため、インスタンスを2つ生成する
     @comment = @blog.comments.build
     @comments = @blog.comments
+    Notification.find(params[:notification_id]).update(read: true) if params[:notification_id]
   end
 
   def new
