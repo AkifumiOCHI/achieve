@@ -57,12 +57,12 @@ class User < ActiveRecord::Base
   end
 
   def update_with_password(params, *options)
-    if provider.blank?
-      super
-    else
-      params.delete :current_password
-      update_without_password(params, *options)
-    end
+      if provider.blank?
+        super
+      else
+        params.delete :current_password
+        update_without_password(params, *options)
+      end
   end
 
   #指定のユーザをフォローする

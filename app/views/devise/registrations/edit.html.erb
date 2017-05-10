@@ -1,62 +1,62 @@
 <div class="container">
-  <div class="wrapper col-md-4 col-md-offset-4 col-sm-10">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 
-
-<h2>ユーザ情報編集 <!--<%= resource_name.to_s.humanize %>--></h2>
+    <h3><%= resource_name.to_s.humanize %>情報編集</h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-　<!--<%= devise_error_messages! %>   DIVE13にてエラーメッセージを定義したので、書き換える  -->
-　<%= f.error_messages! %>
+<%= devise_error_messages! %>
 
+<div class="field">
 <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "メールアドレス" %>
-  </div>
+</div>
 
-  <!-- 名前入力用のフィールドを追加 -->
+<!-- 名前入力用のフィールドを追加 -->
+<div class="field">
+<%= f.text_field :name, class: "form-control", placeholder: "名前" %>
+</div>
 
-  <div class="field">
-    <%= f.text_field :name, class: "form-control", placeholder: "名前" %>
-  </div>
-  <% if @user.provider.blank? %>
+<% if @user.provider.blank? %>
 
-   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-   <% end %>
-
-   <div class="field">
-     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-   </div>
-
-   <div class="field">
-     <%= f.label :password_confirmation %><br />
-     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-   </div>
-
-   <div class="field">
-     <%= f.label :現在のパスワード %><i>(we need your current password to confirm your changes)</i><br />
-     <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
-   </div>
-
- <% end %>
-
-  <div class="field">
-   <%= profile_img(@user) if profile_img(@user) %>
-   <%= f.file_field :avatar %>
-   <%= f.hidden_field :avatar_cache %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "更新", class: "btn btn-primary btn-block" %>
-  </div>
+<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
 <% end %>
 
-<h3>アカウント削除</h3>
+<div class="field">
+<%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "新しいパスワード（※変更しないのであれば空白のままにしてください）" %>
+<% if @minimum_password_length %>
+<br />
+<em><%= @minimum_password_length %> 文字以上</em>
+<% end %>
+</div>
 
-<!--<p>Unhappy? -->
-<%= button_to "削除", registration_path(resource_name), data: { confirm: "アカウントを削除してもよろしいですか？" }, method: :delete, class: "btn btn-danger btn-block" %>
-<!--</p> -->
+<div class="field">
+<%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "新しいパスワード（確認）" %>
+</div>
 
-<%= link_to "戻る", :back %>
+<div class="field">
+<%= f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "現在のパスワード" %>
+</div>
 
-  </div>
+<% end %>
+
+<h3>プロフィール画像</h3>
+<div class="field">
+  <%= profile_img(@user) if profile_img(@user) %>
+  <%= f.file_field :avatar %>
+  <%= f.hidden_field :avatar_cache %>
+</div>
+
+<div class="actions">
+<%= f.submit "更新", class:"btn btn-primary btn-block" %>
+</div>
+<% end %>
+
+<h3>アカウントの削除</h3>
+
+<%= button_to "削除", registration_path(resource_name),class:"btn btn-danger btn-block", data: { confirm: "本当に削除しますか？" }, method: :delete %>
+<br>
+<br>
+<%= link_to "戻る", :back, class:"btn btn-info btn-block" %>
+
+</div>
 </div>
